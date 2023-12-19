@@ -1,0 +1,63 @@
+<div style="margin-top: 80px;">
+
+    <div style="height: 90vh;"
+        class="empty-Cart mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
+        <img style="height: 250PX;"
+            src="https://cdn-icons-gif.flaticon.com/8797/8797960.gif" alt>
+        <h1>Your Cart Empty</h1>
+        <button class="btn btn-success" routerLink>Add More Items</button>
+    </div>
+
+    <div class="cart">
+       <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-info fw-bolder text-center mb-5">Your Cart</h1>
+            <div class="row ">
+                <div class="col-lg-8">
+                    <table class=" table shadow rounded">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product Name</th>
+                                <th>image</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th><i class="fa-solid fa-ellipsis vertical"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mens Casual Premium Slim Fit T-Shirts</td>
+                                <td><img width="100px" height="100px" src alt></td>
+                                <td>
+                                    <div class="d-flex">
+                                        <button class="btn fw-bolder">-</button>
+                                        <input readonly
+                                            class="form-control text-center me-3"
+                                            id="inputQuantity" type="num"
+                                            value="1" style="max-width: 3rem" />
+                                        <button class="btn fw-bolder">+</button>
+                                    </div>
+                                </td>
+                                <td>$200</td>
+                                <td><button class="btn"><i
+                                            class="fa-solid fa-trash text-danger"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-4">
+                    <div class="border rounded p-3 shadow">
+                        <h3>Sub Total: <span>$340</span></h3>
+                        <hr>
+                        <div class="d-grid">
+                            <button class="btn btn-primary">Check Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+    </div>
+
+</div>

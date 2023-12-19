@@ -1,0 +1,37 @@
+<nav style="z-index: 1;" class="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100 top-0
+">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink=""><i class="fa-solid fa-cart-shopping"></i> Daily Cart</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                   <a class="nav-link active d-flex">
+                        <input style="width: 500px;" class="form-control" type="search"
+                            placeholder="Search Products Here..." aria-label="Search">
+                            <button style="margin-left: -50px;" class="btn"  type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                   </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                        routerLink="user/wishlist"><button
+                            class="btn btn-outline-dark"><i class="fa-solid fa-heart text-danger"></i> Wishlist <span class="badge bg-dark">0</span></button></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="user/cart"><button
+                            class="btn btn-outline-dark"><i class="fa-solid fa-cart-shopping text-success"></i> Cart <span class="badge bg-dark">0</span></button></a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="user/login"><button
+                            class="btn"><i class="fa-solid fa-user"></i> Login</button></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
