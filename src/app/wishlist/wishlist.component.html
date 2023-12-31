@@ -1,36 +1,38 @@
+<app-header></app-header>
 <div style="margin-top: 80px;">
-    <div style="height: 90vh;" class="empty-whishlist mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
+    <div *ngIf="wishlistProducts.length===0" style="height: 90vh;" class="empty-whishlist mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
         <img style="height: 250PX;" src="https://cdn-icons-gif.flaticon.com/8797/8797960.gif" alt="">
         <h1>Your Whishlist Empty</h1>
         <button class="btn btn-success" routerLink="">Add More Items</button>
     </div>
 
-    <div class="wishlist">
-        <h1>Your Wishlist..</h1>
-        <div class="container px-4 px-lg-5 mt-5">
+    <div *ngIf="wishlistProducts.length>0" class="wishlist">
+        <div  class="container px-4 px-lg-5 mt-5" >
+            <h1>Your Wishlist..</h1>
             <div
                 class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div class="col mb-5">
-                    <div class="card h-100 shadow">
+                <div *ngFor="let product of wishlistProducts" class="col mb-5">
+                    <div class="card p-3 h-100 shadow overflow-hidden">
                         <!-- Product image-->
-                        <img routerLink="view/1" class="card-img-top"
-                            src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                        <img routerLink="view/{{product.id}}" class="card-img-top"
+                        height="200px"
+                            [src]="product.image"
                             alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">Fancy Product</h5>
+                                <h5 class="fw-bolder">{{product.title.slice(0.20)}}...</h5>
                                 <!-- Product price-->
-                                $40.00 - $80.00
+                                ${{product.price}}
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div
                             class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center d-flex  justify-content-between">
-                               <button class="btn"><i style="height: 40px;" class="fa-solid fa-heart text-danger fa-2x"> </i></button>
-                               <button class="btn"><i style="height: 40px;" class="fa-solid fa-cart-plus text-success fa-2x"> </i></button>
+                               <button (click)="removeItem(product._id)" class="btn"><i style="height: 40px;" class="fa-solid fa-heart-circle-minus text-danger fa-2x"> </i></button>
+                               <button (click)="addtocart(product)" class="btn"><i style="height: 40px;" class="fa-solid fa-cart-plus text-success fa-2x"> </i></button>
                             </div>
                         </div>
                     </div>

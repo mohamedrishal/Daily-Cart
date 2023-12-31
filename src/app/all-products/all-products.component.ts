@@ -23,7 +23,16 @@ export class AllProductsComponent implements OnInit {
 
   addtowishlist(product:any){
     if(sessionStorage.getItem("token")){
-      this.toastr.showSuccess("Proceed to add item to wishlist")
+      
+      this.api.addToWishlistAPI(product).subscribe({
+        next:(res:any)=>{
+          this.toastr.showSuccess(`${res.title} Added Your  Wishlist..!`)
+          this.api.getWishlistCount()
+        },
+        error:(err:any)=>{
+          this.toastr.showWarning(err.error)
+        }
+      })
     }else{
       this.toastr.showWarning("Operation Denied.. Please Login")
     }
@@ -31,7 +40,18 @@ export class AllProductsComponent implements OnInit {
 
   addtocart(product:any){
     if(sessionStorage.getItem("token")){
-      this.toastr.showSuccess("Proceed to add item to cart")
+      Object.assign(product,{quantity:1})
+      this.api.addtocartAPI(product).subscribe({
+        next:(res:any)=>{
+          this.toastr.showSuccess(res)
+          this.api.getCartCount()
+        },
+        error:(err:any)=>{
+          console.log(err);
+          this.toastr.showError(err.error)
+          
+        }
+      })
     }else{
       this.toastr.showWarning("Operation Denied.. Please Login")
     }
