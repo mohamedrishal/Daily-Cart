@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div style="margin-top: 80px;">
 
-    <div style="height: 90vh;"
+    <div *ngIf="cartItems.length===0" style="height: 90vh;"
         class="empty-Cart mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
         <img style="height: 250PX;"
             src="https://cdn-icons-gif.flaticon.com/8797/8797960.gif" alt>
@@ -9,12 +9,12 @@
         <button class="btn btn-success" routerLink>Add More Items</button>
     </div>
 
-    <div class="cart">
+    <div *ngIf="cartItems.length>0" class="cart">
        <div class="container px-4 px-lg-5 mt-5">
         <h1 class="text-info fw-bolder text-center mb-5">Your Cart</h1>
             <div class="row ">
                 <div class="col-lg-8">
-                    <table class=" table shadow rounded">
+                    <table class=" table shadow">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -26,33 +26,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mens Casual Premium Slim Fit T-Shirts</td>
-                                <td><img width="100px" height="100px" src alt></td>
+                            <tr *ngFor="let product of cartItems;let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{product.title.slice(0,20)}}...</td>
+                                <td><img width="100px" height="100px" [src]="product.image" alt></td>
                                 <td>
                                     <div class="d-flex">
-                                        <button class="btn fw-bolder">-</button>
+                                        <button (click)="decrementCart(product._id)"  class="btn fw-bolder">-</button>
                                         <input readonly
                                             class="form-control text-center me-3"
                                             id="inputQuantity" type="num"
-                                            value="1" style="max-width: 3rem" />
-                                        <button class="btn fw-bolder">+</button>
+                                            [value]="product.quantity" style="max-width: 3rem" />
+                                        <button (click)="incrementCart(product._id)" class="btn fw-bolder">+</button>
                                     </div>
                                 </td>
-                                <td>$200</td>
-                                <td><button class="btn"><i
+                                <td>${{product.grantTotal}}</td>
+                                <td><button (click)="removeItem(product._id)" class="btn"><i
                                             class="fa-solid fa-trash text-danger"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="actions  w-100">
+                        <button (click)="emptyCart()"  class="float-end btn btn-danger">Empty Cart</button>
+                        <button routerLink="" class="float-end btn btn-success me-2">Add More Items</button>
+                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="border rounded p-3 shadow">
-                        <h3>Sub Total: <span>$340</span></h3>
+                        <h3>Sub Total: <span class="text-danger">${{cartTotalPrice}}</span></h3>
                         <hr>
                         <div class="d-grid">
-                            <button class="btn btn-primary">Check Out</button>
+                            <button (click)="checkout()" class="btn btn-primary">Check Out</button>
                         </div>
                     </div>
                 </div>

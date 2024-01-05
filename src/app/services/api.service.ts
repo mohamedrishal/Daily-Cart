@@ -82,4 +82,29 @@ export class ApiService {
     })
   }
 
+  // cart incrementApi
+  cartIncrementAPI(id:any){
+    return this.http.get(`${this.SERVER_URL}/cart/increment/${id}`,this.appendTokenToHeader())
+  }
+
+  
+  // cart decrementApi
+  cartDecrementAPI(id:any){
+    return this.http.get(`${this.SERVER_URL}/cart/decrement/${id}`,this.appendTokenToHeader())
+  }
+
+  // cart item remove 
+  removeCartItemAPI(id:any){
+    return this.http.delete(`${this.SERVER_URL}/cart/remove/${id}`,this.appendTokenToHeader())
+  }
+
+  // emptycart 
+  emptyCartAPI(){
+    return this.http.delete(`${this.SERVER_URL}/cart/empty`,this.appendTokenToHeader())
+  }
+
+  
+
+  
+
 }
